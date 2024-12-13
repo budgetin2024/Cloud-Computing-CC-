@@ -1,0 +1,292 @@
+# Base URL: http://localhost:3000
+
+# Authentication
+Use Bearer Token for API authentication.
+
+# Header:
+Authorization: Bearer <token>
+
+
+## Add transactions by category
+HTTP Method: POST
+Endpoint: /transactions
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "type": "income", // atau "expense"
+  "amount": 500000,
+  "category": "Salary",
+  "date": "2024-12-12"
+}
+
+Respond Success
+{
+    "message": "Transaction added successfully.",
+    "transaction": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "type": "income",
+        "category": "Salary",
+        "amount": 500000,
+        "date": "2024-12-12T00:00:00.000Z",
+        "_id": "675bf1b1dca03b152f2ee772",
+        "__v": 0
+    }
+}
+
+
+## View transactions that have been added
+HTTP Method: GET
+Endpoint: /transactions
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "type": "income", // atau "expense"
+  "amount": 500000,
+  "category": "Salary",
+  "date": "2024-12-12"
+}
+
+Respond Success
+{
+    "transactions": [
+        {
+            "_id": "675bf1b1dca03b152f2ee772",
+            "userId": "675be8d1dca03b152f2ee76d",
+            "type": "income",
+            "category": "Salary",
+            "amount": 500000,
+            "date": "2024-12-12T00:00:00.000Z",
+            "__v": 0
+        }
+    ]
+}
+
+
+## Adding a savings target
+HTTP Method: POST
+Endpoint: /savings
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "targetName": "Vacation",
+  "targetAmount": 10000000,
+  "deadline": "2025-01-01"
+}
+
+Respond Success
+{
+    "message": "Saving target added successfully.",
+    "saving": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "targetAmount": 10000000,
+        "_id": "675bf498dca03b152f2ee775",
+        "__v": 0
+    }
+}
+
+
+## Displays savings that have been inputted
+HTTP Method: GET
+Endpoint: /savings
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "targetName": "Vacation",
+  "targetAmount": 10000000,
+  "deadline": "2025-01-01"
+}
+
+Respond Success
+{
+    "savings": [
+        {
+            "_id": "675bf498dca03b152f2ee775",
+            "userId": "675be8d1dca03b152f2ee76d",
+            "targetAmount": 10000000,
+            "__v": 0
+        }
+    ]
+}
+
+
+##Add financial goals
+HTTP Method: POST
+Endpoint: /goals
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+    "goalName": "Save for Vacation",
+    "goalAmount": 1500000,
+    "currentAmount": 0,
+    "deadline": "2024-12-31",
+    "category": "Travel"
+}
+
+Respond Success
+{
+    "message": "Goal created successfully.",
+    "goal": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "name": "Save for Vacation",
+        "targetAmount": 1500000,
+        "progress": 0,
+        "dueDate": "2024-12-31T00:00:00.000Z",
+        "category": "Travel",
+        "_id": "675c4c0e5a0481dbefb62a55",
+        "__v": 0
+    }
+}
+
+
+## Displaying financial goal input results
+HTTP Method: GET
+Endpoint: /goals
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+    "goalName": "Save for Vacation",
+    "goalAmount": 1500000,
+    "currentAmount": 0,
+    "deadline": "2024-12-31",
+    "category": "Travel"
+}
+
+Respond Success
+{
+    "goals": [
+        {
+            "_id": "675c4c0e5a0481dbefb62a55",
+            "userId": "675be8d1dca03b152f2ee76d",
+            "name": "Save for Vacation",
+            "targetAmount": 1500000,
+            "progress": 0,
+            "dueDate": "2024-12-31T00:00:00.000Z",
+            "category": "Travel",
+            "__v": 0
+        }
+    ]
+}
+
+
+## Updating financial goal input
+HTTP Method: PUT
+Endpoint: /goals/id(Id of POST goals result)
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+    "goalName": "Save for Vacation",
+    "goalAmount": 1500000,
+    "currentAmount": 0,
+    "deadline": "2024-12-31",
+    "category": "Travel"
+}
+
+Respond Success
+{
+    "message": "Goal updated successfully.",
+    "goal": {
+        "_id": "675c4c0e5a0481dbefb62a55",
+        "userId": "675be8d1dca03b152f2ee76d",
+        "name": "Save for Vacation",
+        "targetAmount": 1500000,
+        "progress": 0,
+        "dueDate": "2024-12-31T00:00:00.000Z",
+        "category": "Travel",
+        "__v": 0
+    }
+}
+
+
+## Deleting financial goal input
+HTTP Method: DELETE
+Endpoint: /goals/id(Id of POST goals result)
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+    "goalName": "Save for Vacation",
+    "goalAmount": 1500000,
+    "currentAmount": 0,
+    "deadline": "2024-12-31",
+    "category": "Travel"
+}
+
+Respond Success
+{
+    "message": "Goal deleted successfully."
+}
+
+
+## Prediction
+HTTP Method: POST
+Endpoint: Prediction Model Machine Learning URL
+Header: Authorization: Bearer <token> from login respond
+
+
+## Statistic
+HTTP Method: POST
+Endpoint: Statistic Model Machine Learning URL
+Header: Authorization: Bearer <token> from login respond
+
+
+## Add financial spending limits
+HTTP Method: POST
+Endpoint: /spending-limit
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "limit": 5000000
+}
+
+Respond Succes
+{
+    "message": "Spending limit added successfully.",
+    "spendingLimit": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "_id": "675c52515a0481dbefb62a5c",
+        "__v": 0
+    }
+}
+
+
+## Display financial spending limits
+HTTP Method: GET
+Endpoint: /spending-limit
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "limit": 5000000
+}
+
+Respond Success
+{
+    "spendingLimits": [
+        {
+            "_id": "675c52515a0481dbefb62a5c",
+            "userId": "675be8d1dca03b152f2ee76d",
+            "__v": 0
+        }
+    ]
+}
+
+
+## Add alert for financial spending limits
+HTTP Method: POST
+Endpoint: /spending-alerts
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+    "limit": 500000,
+    "frequency": "monthly",
+    "category": "groceries"
+}
+
+Respond Success
+{
+    "message": "Spending alert created successfully!",
+    "data": {
+        "id": 1734103941424,
+        "limit": 500000,
+        "frequency": "monthly",
+        "category": "groceries"
+    }
+}
