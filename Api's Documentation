@@ -1,0 +1,184 @@
+# Base URL: http://localhost:3000
+
+# Authentication
+Use Bearer Token for API authentication.
+
+# Header:
+Authorization: Bearer <token>
+
+# Endopint:
+AUTHENTIFICATION
+
+##Add account for registration:
+HTTP Method: POST
+Endpoint: /auth/register
+Body Parameter (json)
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+Respond Succses
+{
+    "message": "User registered successfully.",
+    "user": {
+        "id": "675be8d1dca03b152f2ee76d",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+    }
+}
+
+
+##login to account:
+HTTP Method: POST
+Endpoint: /auth/login
+Body Parameter (json)
+{
+  "email": "dea.doe@example.com",
+  "password": "password123"
+}
+
+Respond Succes
+
+{
+    "message": "Login successful.",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NWJlOGQxZGNhMDNiMTUyZjJlZTc2ZCIsImlhdCI6MTczNDA3NjgyNywiZXhwIjoxNzM0MTYzMjI3fQ.qdAH0BAcgYFZcRqSucUe7qn3IpDDPsGYL00TJnehgNw",
+    "user": {
+        "id": "675be8d1dca03b152f2ee76d",
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+    }
+}
+
+
+##To display our profile:
+HTTP Method: GET
+Endpoint: /auth/profile
+Body Parameter (json)
+{
+  "email": "dea.doe@example.com",
+  "password": "password123"
+}
+
+Respond Success
+{
+    "message": "Profile fetched successfully!"
+}
+
+
+## To get details from user
+HTTP Method: GET
+Endpoint: /auth/user
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "email": "dea.doe@example.com",
+  "password": "password123"
+}
+
+
+Respond Success
+ "user": {
+        "id": "675be8d1dca03b152f2ee76d",
+        "name": "John Doe",
+        "email": "dea.doe@example.com"
+    }
+}
+
+
+## To log out of your account/profile
+HTTP Method: GET
+Endpoint: /auth/user
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "email": "dea.doe@example.com",
+  "password": "password123"
+}
+
+
+Respond Success
+{
+    "message": "Logout successful"
+}
+
+
+## Add transactions by category
+HTTP Method: POST
+Endpoint: /transactions
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "type": "income", // atau "expense"
+  "amount": 500000,
+  "category": "Salary",
+  "date": "2024-12-12"
+}
+
+Respond Success
+{
+    "message": "Transaction added successfully.",
+    "transaction": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "type": "income",
+        "category": "Salary",
+        "amount": 500000,
+        "date": "2024-12-12T00:00:00.000Z",
+        "_id": "675bf1b1dca03b152f2ee772",
+        "__v": 0
+    }
+}
+
+
+## View transactions that have been added
+HTTP Method: GET
+Endpoint: /transactions
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "type": "income", // atau "expense"
+  "amount": 500000,
+  "category": "Salary",
+  "date": "2024-12-12"
+}
+
+Respond Success
+{
+    "transactions": [
+        {
+            "_id": "675bf1b1dca03b152f2ee772",
+            "userId": "675be8d1dca03b152f2ee76d",
+            "type": "income",
+            "category": "Salary",
+            "amount": 500000,
+            "date": "2024-12-12T00:00:00.000Z",
+            "__v": 0
+        }
+    ]
+}
+
+
+## Adding a savings target
+HTTP Method: POST
+Endpoint: /savings
+Header: Authorization: Bearer <token> from login respond
+Body Parameter (json)
+{
+  "targetName": "Vacation",
+  "targetAmount": 10000000,
+  "deadline": "2025-01-01"
+}
+
+Respond Success
+{
+    "message": "Saving target added successfully.",
+    "saving": {
+        "userId": "675be8d1dca03b152f2ee76d",
+        "targetAmount": 10000000,
+        "_id": "675bf498dca03b152f2ee775",
+        "__v": 0
+    }
+}
+
+
+## 
